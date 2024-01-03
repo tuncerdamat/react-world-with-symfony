@@ -1,9 +1,19 @@
 import React, {Component} from "react";
 
 export default class RepLogApp extends Component {
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            highlightedRowId: null,
+        };
+    }
     render () {
+        const { highlightedRowId } = this.state;
+        const { withHeart } = this.props;
+        
         let heart = '';
-        if(this.props.withHeart){
+        if(withHeart){
             heart = <span>❤️</span>;
         }
         
@@ -12,17 +22,6 @@ export default class RepLogApp extends Component {
             { id: 2, reps: 10, itemLabel: 'Big Fat Cat', totalWeightLifted: 180 },
             { id: 8, reps: 4, itemLabel: 'Big Fat Cat', totalWeightLifted: 72 }
         ];
-        
-        const repLogElements = repLogs.map((repLog) => {
-           return (
-               <tr key={repLog.id}>
-                   <td>{repLog.itemLabel}</td>
-                   <td>{repLog.reps}</td>
-                   <td>{repLog.totalWeightLifted}</td>
-                   <td>...</td>
-               </tr>
-           ); 
-        });
         
         return (
             <div className="col-md-7 js-rep-log-table">
@@ -39,7 +38,9 @@ export default class RepLogApp extends Component {
                     <tbody>
                         { repLogs.map((repLog) => 
                                  (
-                                    <tr key={repLog.id}>
+                                    <tr key={repLog.id}
+                                        className={highlightedRowId === repLog.id ? 'info' : ''}
+                                    >
                                         <td>{repLog.itemLabel}</td>
                                         <td>{repLog.reps}</td>
                                         <td>{repLog.totalWeightLifted}</td>
