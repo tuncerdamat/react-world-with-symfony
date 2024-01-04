@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import RepLogList from "./RepLogList";
 import RepLogs from "./RepLogs";
 
 export default class RepLogApp extends Component {

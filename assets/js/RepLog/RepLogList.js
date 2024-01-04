@@ -14,7 +14,7 @@ export default function RepLogList(props) {
         {repLogs.map((repLog) =>
             (
                 <tr key={repLog.id}
-                    className={props.highlightedRowId === repLog.id ? 'info' : ''}
+                    className={highlightedRowId === repLog.id ? 'info' : ''}
                     onClick={(event) => onRowClick(repLog.id)}
                 >
                     <td>{repLog.itemLabel}</td>
