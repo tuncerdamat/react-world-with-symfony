@@ -8,6 +8,11 @@ export default class RepLogApp extends Component {
             highlightedRowId: null,
         };
     }
+    
+    handleRowClick(repLogId, event){
+        this.setState({highlightedRowId: repLogId});
+    }
+    
     render () {
         const { highlightedRowId } = this.state;
         const { withHeart } = this.props;
@@ -40,6 +45,7 @@ export default class RepLogApp extends Component {
                                  (
                                     <tr key={repLog.id}
                                         className={highlightedRowId === repLog.id ? 'info' : ''}
+                                        onClick={(event) => this.handleRowClick(repLog.id, event)}
                                     >
                                         <td>{repLog.itemLabel}</td>
                                         <td>{repLog.reps}</td>
