@@ -1,21 +1,30 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import RepLogs from "./RepLogs";
+import {v4 as uuid} from "uuid";
 
 export default class RepLogCreator extends Component {
     constructor(props) {
         super(props);
         this.quantityInput = React.createRef()
         this.itemSelect = React.createRef()
+        
+        this.itemOptions = [
+            { id: 'cat', text: 'Cat', },
+            { id: 'big_fat_cat', text: 'Big Fat Cat', },
+            { id: 'laptop', text: 'Laptop', },
+            { id: 'coffee_cup', text: 'Coffee cup', },
+        ]
+        
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
     handleFormSubmit(event) {
         event.preventDefault();
-        const { onNewItemSubmit } = this.props;
+        const { onAddRepLog } = this.props;
         const quantityInput = this.quantityInput.current;
         const itemSelect = this.itemSelect.current;
     
-        onNewItemSubmit(
+        onAddRepLog(
             itemSelect.options[itemSelect.selectedIndex].text,
             quantityInput.value
         );
@@ -36,10 +45,11 @@ export default class RepLogCreator extends Component {
                             required="required"
                             className="form-control">
                         <option value="">What did you lift?</option>
-                        <option value="cat">Cat</option>
-                        <option value="fat_cat">Big Fat Cat</option>
-                        <option value="laptop">My Laptop</option>
-                        <option value="coffee_cup">Coffee Cup</option>
+                        {
+                            this.itemOptions.map(option => {
+                                return <option value={option.id} key={option.id}>{option.text}</option>
+                            })
+                        }
                     </select>
                 </div>
                 {' '}
@@ -62,5 +72,5 @@ export default class RepLogCreator extends Component {
 }
 
 RepLogs.propTypes = {
-        onNewItemSubmit: PropTypes.func.isRequired,
+        onAddRepLog: PropTypes.func.isRequired,
 }
