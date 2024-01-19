@@ -14,7 +14,8 @@ export default function RepLogs(props) {
         repLogs,
         onAddRepLog,
         numberOfHearts,
-        onHeartChange
+        onHeartChange,
+        onDeleteRepLog
     } = props;
     
     let heart = '';
@@ -23,7 +24,7 @@ export default function RepLogs(props) {
     }
 
     return (
-        <div className="col-md-7 js-rep-log-table">
+        <div className="col-md-7">
             <h2>Lift Stuff! {heart}</h2>
             
             <input 
@@ -47,6 +48,7 @@ export default function RepLogs(props) {
                     highlightedRowId={highlightedRowId}
                     onRowClick={onRowClick}
                     repLogs={repLogs}
+                    onDeleteRepLog={onDeleteRepLog}
                 />
                 <tfoot>
                 <tr>
@@ -74,5 +76,6 @@ RepLogs.propTypes = {
     onAddRepLog: PropTypes.func.isRequired,
     repLogs: PropTypes.array.isRequired,
     numberOfHearts: PropTypes.number.isRequired,
-    onHeartChange: PropTypes.func.isRequired
+    onHeartChange: PropTypes.func.isRequired,
+    onDeleteRepLog: PropTypes.func.isRequired
 }

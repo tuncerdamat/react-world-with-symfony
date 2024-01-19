@@ -2,7 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export default function RepLogList(props) {
-    const {highlightedRowId, onRowClick, repLogs} = props;
+    const {highlightedRowId, onRowClick, repLogs, onDeleteRepLog} = props;
+    const handleDeleteClick = function (event, repLogId) {
+        event.preventDefault(); // The browser doesnt try to follow the link
+        
+        onDeleteRepLog(repLogId);
+    }
 
     return (
         <tbody>
@@ -15,7 +20,11 @@ export default function RepLogList(props) {
                     <td>{repLog.itemLabel}</td>
                     <td>{repLog.reps}</td>
                     <td>{repLog.totalWeightLifted}</td>
-                    <td>...</td>
+                    <td>
+                        <a href="" onClick={(event) => handleDeleteClick(event, repLog.id)}>
+                            <span className="fa fa-trash"></span>
+                        </a>
+                    </td>
                 </tr>
             )
         )
@@ -28,4 +37,5 @@ RepLogList.propTypes = {
     highlightedRowId: PropTypes.any,
     onRowClick: PropTypes.func.isRequired,
     repLogs: PropTypes.array.isRequired,
+    onDeleteRepLog: PropTypes.func.isRequired
 }
