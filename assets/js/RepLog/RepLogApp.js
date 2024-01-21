@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import RepLogs from "./RepLogs";
 import PropTypes from "prop-types";
 import { v4 as uuid } from 'uuid';
-import { getRepLogs } from "../api/rep_log_api";
+import { getRepLogs, deleteReplog } from "../api/rep_log_api";
 
 export default class RepLogApp extends Component {
     constructor(props) {
@@ -56,6 +56,8 @@ export default class RepLogApp extends Component {
     }
     
     handleDeleteRepLog(id){
+        deleteReplog(id)
+        
         // remove the rep log without mutating state
         // filter returns a new array
         this.setState((prevState) => {
