@@ -26,5 +26,8 @@
     "watch": "encore dev --watch",
     "build": "encore production"
   },
-  "dependencies": {}
+  "dependencies": {
+    "promise-polyfill": "^8.3.0",
+    "whatwg-fetch": "^3.6.20"
+  }
 }
