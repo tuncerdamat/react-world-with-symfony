@@ -15,7 +15,7 @@ export default class RepLogCreator extends Component {
         
         this.itemOptions = [
             { id: 'cat', text: 'Cat', },
-            { id: 'big_fat_cat', text: 'Big Fat Cat', },
+            { id: 'fat_cat', text: 'Big Fat Cat', },
             { id: 'laptop', text: 'Laptop', },
             { id: 'coffee_cup', text: 'Coffee cup', },
         ]
@@ -37,7 +37,7 @@ export default class RepLogCreator extends Component {
         }
         
         onAddRepLog(
-            itemSelect.options[itemSelect.selectedIndex].text,
+            itemSelect.options[itemSelect.selectedIndex].value,
             quantityInput.value
         );
         

@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import RepLogs from "./RepLogs";
 import PropTypes from "prop-types";
 import { v4 as uuid } from 'uuid';
-import { getRepLogs, deleteReplog } from "../api/rep_log_api";
+import { getRepLogs, deleteReplog, createRepLog } from "../api/rep_log_api";
 
 export default class RepLogApp extends Component {
     constructor(props) {
@@ -35,13 +35,20 @@ export default class RepLogApp extends Component {
         this.setState({highlightedRowId: repLogId});
     }
     
-    handleAddRepLog(itemLabel, reps){
+    handleAddRepLog(item, reps){
         const newRep = {
-            id: uuid(),
             reps: reps,
-            itemLabel: itemLabel,
-            totalWeightLifted: Math.floor(Math.random() * 50),
+            item: item,
         }
+        
+        createRepLog(newRep)
+            .then(repLog => {
+                this.setState(prevState => {
+                    const newRepLogs = [...prevState.repLogs, repLog]
+                    
+                    return {repLogs: newRepLogs}
+                })
+            })
         
         this.setState(prevState => {
             const newRepLogs = [...prevState.repLogs, newRep];
