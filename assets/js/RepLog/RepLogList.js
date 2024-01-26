@@ -26,6 +26,9 @@ export default function RepLogList(props) {
                 <tr key={repLog.id}
                     className={highlightedRowId === repLog.id ? 'info' : ''}
                     onClick={(event) => onRowClick(repLog.id)}
+                    style={{
+                        opacity: repLog.isDeleting ? .3 : 1
+                    }}
                 >
                     <td>{repLog.itemLabel}</td>
                     <td>{repLog.reps}</td>
